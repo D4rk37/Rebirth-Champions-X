@@ -1,0 +1,105 @@
+getgenv().AutoTap = false
+while getgenv().AutoTap == true do
+  game:GetService("ReplicatedStorage").Events.Click3:FireServer()
+  wait()
+end
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+  Name = "Rebirth Champions X GUI | Shadow Hub",
+  LoadingTitle = "Loading Script...",
+  LoadingSubtitle = "D4rk#0001 | janis#6697",
+  ConfigurationSaving = {
+     Enabled = true,
+     FolderName = ShadowHub, -- Create a custom folder for your hub/game
+     FileName = "Rebirth Champions X Config"
+  },
+  Discord = {
+     Enabled = true,
+     Invite = "pp4FUR2Pmj", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+     RememberJoins = false -- Set this to false to make them join the discord every time they load it up
+  },
+  KeySystem = true, -- Set this to true to use our key system
+  KeySettings = {
+     Title = "Shadow Hub Key System",
+     Subtitle = "Rebirth Champions X",
+     Note = "Kill Yourself.",
+     FileName = "RCXK", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+     SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+     GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+     Key = {"kys"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+  }
+})
+
+local Tab = Window:CreateTab("Main", 4483362458) -- Title, Image
+local Tab2 = Window:CreateTab("Egg", 4483362458) -- Title, Image
+local Tab3 = Window:CreateTab("Other", 4483362458) -- Title, Image
+
+local Section = Tab:CreateSection("D4rk#0001 | janis#6697")
+local Section = Tab2:CreateSection("D4rk#0001 | janis#6697")
+
+local Toggle = Tab:CreateToggle({
+  Name = "AutoTap",
+  CurrentValue = false,
+  Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+  Callback = function(Value)
+      getgenv().AutoTap = Value
+      while getgenv().AutoTap == true do
+                  spawn(function()
+                      while AutoTap do task.wait()
+                        game:GetService("ReplicatedStorage").Events.Click3:FireServer()
+                      end
+                  end)
+      task.wait()
+      end
+  end,
+})
+
+
+local Dropdown = Tab2:CreateDropdown({
+  Name = "Egg Open",
+  Options = {"Basic Egg","Mythic Egg","Forest Egg","Beach Egg","Atlantis Egg","Desert Egg","Winter Egg","Volcano Egg","Moon Egg","Cyber Egg","Magic Egg","Heaven Egg","Nuclear Egg","Void Egg","Spooky Egg","Cave Egg","Steampumk Egg","Hell Egg"},
+  CurrentOption = {"Select Egg"},
+  MultipleOptions = false,
+  Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+  Callback = function(Option)
+  -- The function that takes place when the selected option is changed
+  -- The variable (Option) is a table of strings for the current selected options
+  end,
+})
+
+local Slider = Tab3:CreateSlider({
+  Name = "WalkSpeed",
+  Range = {16, 100},
+  Increment = 1,
+  Suffix = "Speed",
+  CurrentValue = 16,
+  Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+  Callback = function(s)
+      game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+  end,
+})
+
+local Button = Tab3:CreateButton({
+  Name = "Destroy UI",
+  Callback = function()
+    Rayfield:Destroy()
+  end,
+})
+
+Rayfield:Notify({
+  Title = "Shadow Hub",
+  Content = "Script Loaded",
+  Duration = 3,
+  Image = 4483362458,
+  Actions = { -- Notification Buttons
+     Ignore = {
+        Name = "Okay!",
+        Callback = function()
+     end
+  },
+},
+})
+
+Rayfield:LoadConfiguration()
