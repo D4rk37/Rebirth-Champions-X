@@ -13,7 +13,7 @@ local Window = Rayfield:CreateWindow({
   ConfigurationSaving = {
      Enabled = true,
      FolderName = ShadowHub, -- Create a custom folder for your hub/game
-     FileName = "Rebirth Champions X Config"
+     FileName = "RebirthChampionsXConfig"
   },
   Discord = {
      Enabled = true,
